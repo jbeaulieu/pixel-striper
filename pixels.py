@@ -12,8 +12,6 @@ SUPPORTED_FILE_TYPES = (".jpg", ".jpeg", ".png")
 @click.option("-q", "--jpeg", default=95, help="Set JPEG quality level. Defaults to 95. Warning: Setting this to 100 will disable "+
     "portions of the JPEG compression algorithm")
 def main(source, size, jpeg):
-@click.option("-p", "--pixels", default=False, is_flag=True, help="Enable pretty print of pixel rgb values")
-def main(source, size, jpeg, pixels):
 
     if not source.lower().endswith(SUPPORTED_FILE_TYPES):
         sys.exit("Error: File is not supported. Please use a valid .jpg, .jpeg, or .png file")
@@ -35,7 +33,17 @@ def main(source, size, jpeg, pixels):
 
     # Generate list of RGB values for the image, read pixel by pixel left to right, top to bottom. Takes the form
     # of a list of tuples, where each tuple is three ints representing the R,G,B values of a single pixel.
-    pixels = list(resized.getdata())
+    pixel_list = list(resized.getdata())
+    
+    pixel_array = []
+
+    # Place pixel RGB tuples into 2D array for easy grid reference
+    # Individual tuples can be referenced as pixel_array[row][column]
+    for j in range(size):
+        row = []
+        for i in range(size):
+            row.append(pixel_list[j*size + i])
+        pixel_array.append(row)
 
 if __name__ == '__main__':
     main()
