@@ -12,6 +12,8 @@ SUPPORTED_FILE_TYPES = (".jpg", ".jpeg", ".png")
 @click.option("-q", "--jpeg", default=95, help="Set JPEG quality level. Defaults to 95. Warning: Setting this to 100 will disable "+
     "portions of the JPEG compression algorithm")
 def main(source, size, jpeg):
+@click.option("-p", "--pixels", default=False, is_flag=True, help="Enable pretty print of pixel rgb values")
+def main(source, size, jpeg, pixels):
 
     if not source.lower().endswith(SUPPORTED_FILE_TYPES):
         sys.exit("Error: File is not supported. Please use a valid .jpg, .jpeg, or .png file")
