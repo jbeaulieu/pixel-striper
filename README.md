@@ -16,6 +16,8 @@ The following python modules should be installed:
 
 `pixels.py` will run on any valid .jpg, .jpeg, or .png file. By default, it will search for a file titled `image.jpg` in its directory, and resize that file to 16px square, output to `output.jpg`. It will also generate a two-dimensional array of RGB values for the pixels in the image, read left to right, top to bottom. These values are currently only stored in memory, and will be used in a future revision.
 
+Example: `sudo python3 pixels.py -i image.png -q 2`
+
 The following options are available via CLI:
 
 | Flags      | Description |
